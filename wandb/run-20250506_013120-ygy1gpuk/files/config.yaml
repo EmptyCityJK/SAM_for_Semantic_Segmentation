@@ -1,0 +1,116 @@
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m: []
+        python_version: 3.11.11
+        t:
+            "1":
+                - 1
+                - 41
+                - 51
+                - 55
+            "2":
+                - 1
+                - 41
+                - 51
+                - 55
+            "3":
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.11.11
+            "5": 0.19.10
+            "8":
+                - 5
+            "12": 0.19.10
+            "13": linux-x86_64
+test:
+    value:
+        need_test: false
+train:
+    value:
+        bs: 8
+        dataset:
+            name: torch_voc_sem
+            params:
+                image_set: train
+                root: ./DataSet
+                year: "2012"
+            target_transforms:
+                resize:
+                    params:
+                        size:
+                            - 1024
+                            - 1024
+            transforms:
+                resize:
+                    params:
+                        size:
+                            - 1024
+                            - 1024
+                to_tensor:
+                    params: null
+        drop_last: true
+        eval_iter: 200
+        experiment_name: semantic_sam
+        log_folder: ./experiment/log
+        log_iter: 20
+        losses:
+            ce:
+                label_one_hot: false
+                params:
+                    ignore_index: 255
+                weight: 0.5
+        max_epoch: 100
+        model:
+            params:
+                ckpt_path: sam_ckpt/sam_vit_b_01ec64.pth
+                class_num: 21
+                fix_img_en: true
+                fix_mask_de: false
+                fix_prompt_en: true
+                model_type: vit_b
+            sam_name: sem_sam
+        model_folder: ./experiment/model
+        num_workers: 4
+        opt_name: sgd
+        opt_params:
+            group_keys:
+                - - mask_adapter.decoder_head.output_hypernetworks_mlps
+            lr_default: 0.001
+            lr_list:
+                - 0.01
+            momentum: 0.9
+            wd_default: 0.0001
+            wd_list:
+                - 0
+        runner_name: sem_runner
+        scheduler_name: cosine
+        tensorboard_folder: ./experiment/tensorboard
+        use_tensorboard: true
+val:
+    value:
+        bs: 8
+        dataset:
+            name: torch_voc_sem
+            params:
+                image_set: val
+                root: ./DataSet
+                year: "2012"
+            target_transforms:
+                resize:
+                    params:
+                        size:
+                            - 1024
+                            - 1024
+            transforms:
+                resize:
+                    params:
+                        size:
+                            - 1024
+                            - 1024
+                to_tensor:
+                    params: null
+        drop_last: true
+        num_workers: 4

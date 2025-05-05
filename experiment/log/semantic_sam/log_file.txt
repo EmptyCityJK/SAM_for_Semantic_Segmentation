@@ -872,3 +872,17 @@ iteration : 12539, ce : 0.6601952642202378, total_loss : 0.3300976321101189, tim
 iteration : 12559, ce : 0.6265821781009435, total_loss : 0.31329108905047176, time : 5
 iteration : 12579, ce : 0.6673849776387215, total_loss : 0.33369248881936076, time : 5
 iteration : 12599, ce : 0.6955225497484208, total_loss : 0.3477612748742104, time : 5
+iteration : 12599, mIoU : 16.78197786853762, best_valid_mIoU : 16.896903290827467, time : 95
+iteration : 12619, ce : 0.539138724654913, total_loss : 0.2695693623274565, time : 101
+iteration : 12639, ce : 0.7649294301867485, total_loss : 0.38246471509337426, time : 5
+iteration : 12659, ce : 0.8255584247410297, total_loss : 0.41277921237051485, time : 5
+iteration : 12679, ce : 0.6724234625697136, total_loss : 0.3362117312848568, time : 5
+iteration : 12699, ce : 0.6228508681058884, total_loss : 0.3114254340529442, time : 5
+iteration : 12719, ce : 0.5656941056251525, total_loss : 0.28284705281257627, time : 5
+iteration : 12739, ce : 0.7337289839982987, total_loss : 0.36686449199914933, time : 5
+iteration : 12759, ce : 0.7841005995869637, total_loss : 0.3920502997934818, time : 5
+iteration : 12779, ce : 0.7236694350838662, total_loss : 0.3618347175419331, time : 5
+iteration : 12799, ce : 0.616372887045145, total_loss : 0.3081864435225725, time : 5
+Epoch 1: saved best model to ./experiment/model/semantic_sam/model.pth
+Epoch : 1, train_loss : 0.6075, train_mIoU : 5.1268, train_mIoU_fg : 1.4873, val_loss : 0.5315, val_mIoU : 5.2097, val_mIoU_fg : 1.5492, val_best_mIoU : 5.2097, time : 357.0000
+Epoch : 2, train_loss : 0.5319, train_mIoU : 5.2423, train_mIoU_fg : 1.5845, val_loss : 0.5315, val_mIoU : 5.2097, val_mIoU_fg : 1.5492, val_best_mIoU : 5.2097, time : 371.0000

@@ -1,0 +1,32 @@
+Using 2 GPUs: 0,1
+Start training loop: Epoch 1
+Epoch 1: saved best model to ./experiment/model/semantic_sam/model.pth
+Epoch : 1, train_loss : 0.6075, train_mIoU : 5.1268, train_mIoU_fg : 1.4873, val_loss : 0.5315, val_mIoU : 5.2097, val_mIoU_fg : 1.5492, val_best_mIoU : 5.2097, time : 357.0000
+Start training loop: Epoch 2
+Epoch : 2, train_loss : 0.5319, train_mIoU : 5.2423, train_mIoU_fg : 1.5845, val_loss : 0.5315, val_mIoU : 5.2097, val_mIoU_fg : 1.5492, val_best_mIoU : 5.2097, time : 371.0000
+Start training loop: Epoch 3
+Traceback (most recent call last):
+  File "/root/sam_seg/train.py", line 49, in <module>
+    runner.train(train_cfg)
+  File "/root/sam_seg/extend_sam/runner.py", line 90, in train
+    "val_best_mIoU": best_val_mIoU
+
+  File "/root/sam_seg/extend_sam/runner.py", line 152, in _eval_with_loss
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 193, in forward
+    replicas = self.replicate(self.module, self.device_ids[: len(inputs)])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 200, in replicate
+    return replicate(module, device_ids, not torch.is_grad_enabled())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/replicate.py", line 158, in replicate
+    replica._former_parameters = OrderedDict()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 2041, in __setattr__
+    super().__setattr__(name, value)
+KeyboardInterrupt

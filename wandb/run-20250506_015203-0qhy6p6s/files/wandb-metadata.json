@@ -1,0 +1,52 @@
+{
+  "os": "Linux-5.15.0-94-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-05-05T17:52:03.712319Z",
+  "args": [
+    "--task_name",
+    "semantic_seg"
+  ],
+  "program": "/root/sam_seg/train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/EmptyCityJK/sam_seg.git",
+    "commit": "a837f5b5a75e348f90cfe31d1eef139b0345f9d8"
+  },
+  "email": "2460752764@qq.com",
+  "root": "/root/sam_seg",
+  "host": "autodl-container-ed8b4eb3e3-298c0648",
+  "executable": "/root/miniconda3/envs/sam_env/bin/python",
+  "codePathLocal": "train.py",
+  "cpu_count": 96,
+  "cpu_count_logical": 192,
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "32212254720",
+      "used": "17425330176"
+    }
+  },
+  "memory": {
+    "total": "1081834618880"
+  },
+  "cpu": {
+    "count": 96,
+    "countLogical": 192
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4090 D",
+      "memoryTotal": "25757220864",
+      "cudaCores": 14592,
+      "architecture": "Ada"
+    },
+    {
+      "name": "NVIDIA GeForce RTX 4090 D",
+      "memoryTotal": "25757220864",
+      "cudaCores": 14592,
+      "architecture": "Ada"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

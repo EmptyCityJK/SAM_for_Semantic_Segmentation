@@ -222,7 +222,6 @@ def check_folder(file_path, is_folder=False):
 
 def one_hot_embedding_3d(labels, class_num=21):
     '''
-
     :param real_labels: B H W
     :param class_num: N
     :return: B N H W

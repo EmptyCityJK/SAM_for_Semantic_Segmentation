@@ -1,0 +1,56 @@
+Using 2 GPUs: 0,1
+Traceback (most recent call last):
+  File "/root/sam_seg/train.py", line 49, in <module>
+    runner.train(train_cfg)
+  File "/root/sam_seg/extend_sam/runner.py", line 51, in train
+    masks_pred, _ = self.model(images)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 194, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 213, in parallel_apply
+    return parallel_apply(
+           ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/parallel_apply.py", line 127, in parallel_apply
+    output.reraise()
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/_utils.py", line 750, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/parallel_apply.py", line 97, in _worker
+    output = module(*input, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/sam_seg/extend_sam/extend_sam.py", line 21, in forward
+    x = self.img_adapter(img)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/sam_seg/extend_sam/image_encoder_adapter.py", line 15, in forward
+    x = self.sam_img_encoder(x)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/sam_seg/extend_sam/segment_anything_ori/modeling/image_encoder.py", line 109, in forward
+    x = x + self.pos_embed
+        ~~^~~~~~~~~~~~~~~~
+RuntimeError: The size of tensor a (14) must match the size of tensor b (64) at non-singleton dimension 2

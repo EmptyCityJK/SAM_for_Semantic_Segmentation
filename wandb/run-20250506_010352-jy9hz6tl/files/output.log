@@ -1,0 +1,209 @@
+Using 2 GPUs: 0,1
+Start training loop
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Got a batch
+Traceback (most recent call last):
+  File "/root/sam_seg/train.py", line 49, in <module>
+    runner.train(train_cfg)
+  File "/root/sam_seg/extend_sam/runner.py", line 63, in train
+    masks_pred, _ = self.model(images)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 194, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/data_parallel.py", line 213, in parallel_apply
+    return parallel_apply(
+           ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/torch/nn/parallel/parallel_apply.py", line 119, in parallel_apply
+    thread.join()
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/threading.py", line 1119, in join
+    self._wait_for_tstate_lock()
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/threading.py", line 1139, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

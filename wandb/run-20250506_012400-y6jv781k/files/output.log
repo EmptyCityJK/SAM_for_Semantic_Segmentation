@@ -1,0 +1,16 @@
+Using 2 GPUs: 0,1
+Traceback (most recent call last):
+  File "/root/sam_seg/train.py", line 49, in <module>
+    runner.train(train_cfg)
+  File "/root/sam_seg/extend_sam/runner.py", line 36, in train
+    wandb.define_metric("train_loss", step_metric="epoch", summary="min", prog_bar=True)
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/sam_env/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 451, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Run.define_metric() got an unexpected keyword argument 'prog_bar'

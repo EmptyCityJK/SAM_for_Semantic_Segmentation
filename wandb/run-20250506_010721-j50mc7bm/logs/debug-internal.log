@@ -1,0 +1,16 @@
+{"time":"2025-05-06T01:07:21.29371267+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/root/sam_seg/wandb/run-20250506_010721-j50mc7bm/logs/debug-core.log"}
+{"time":"2025-05-06T01:07:22.198437506+08:00","level":"INFO","msg":"created new stream","id":"j50mc7bm"}
+{"time":"2025-05-06T01:07:22.198514324+08:00","level":"INFO","msg":"stream: started","id":"j50mc7bm"}
+{"time":"2025-05-06T01:07:22.198563981+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:07:22.198646241+08:00","level":"INFO","msg":"handler: started","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:07:22.198576622+08:00","level":"INFO","msg":"sender: started","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:07:22.62650747+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-06T01:08:52.890608681+08:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/emptycity/sam-semantic-segmentation/j50mc7bm/file_stream\": unexpected EOF"}
+{"time":"2025-05-06T01:23:12.070348702+08:00","level":"INFO","msg":"stream: closing","id":"j50mc7bm"}
+{"time":"2025-05-06T01:23:12.070396075+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-06T01:23:12.070463031+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-06T01:23:13.652685391+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-06T01:23:14.439006488+08:00","level":"INFO","msg":"handler: closed","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:23:14.439113041+08:00","level":"INFO","msg":"sender: closed","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:23:14.439102229+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"j50mc7bm"}
+{"time":"2025-05-06T01:23:14.439308714+08:00","level":"INFO","msg":"stream: closed","id":"j50mc7bm"}

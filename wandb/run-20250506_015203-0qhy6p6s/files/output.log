@@ -1,0 +1,68 @@
+Using 2 GPUs: 0,1
+Start training loop: Epoch 1
+Epoch 1: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 2
+Start training loop: Epoch 3
+Epoch 3: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 4
+Start training loop: Epoch 5
+Epoch 5: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 6
+Start training loop: Epoch 7
+Epoch 7: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 8
+Start training loop: Epoch 9
+Epoch 9: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 10
+Start training loop: Epoch 11
+Start training loop: Epoch 12
+Start training loop: Epoch 13
+Epoch 13: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 14
+Start training loop: Epoch 15
+Epoch 15: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 16
+Start training loop: Epoch 17
+Epoch 17: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 18
+Start training loop: Epoch 19
+Start training loop: Epoch 20
+Start training loop: Epoch 21
+Epoch 21: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 22
+Start training loop: Epoch 23
+Epoch 23: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 24
+Start training loop: Epoch 25
+Epoch 25: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 26
+Start training loop: Epoch 27
+Start training loop: Epoch 28
+Start training loop: Epoch 29
+Start training loop: Epoch 30
+Start training loop: Epoch 31
+Epoch 31: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 32
+Start training loop: Epoch 33
+Start training loop: Epoch 34
+Start training loop: Epoch 35
+Epoch 35: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 36
+Start training loop: Epoch 37
+Epoch 37: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 38
+Start training loop: Epoch 39
+Epoch 39: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 40
+Start training loop: Epoch 41
+Epoch 41: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 42
+Start training loop: Epoch 43
+Start training loop: Epoch 44
+Start training loop: Epoch 45
+Start training loop: Epoch 46
+Start training loop: Epoch 47
+Start training loop: Epoch 48
+Start training loop: Epoch 49
+Epoch 49: saved best model to ./experiment/model/semantic_sam/model.pth
+Start training loop: Epoch 50

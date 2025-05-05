@@ -1,0 +1,23 @@
+2025-05-06 01:36:16,572 INFO    MainThread:11091 [wandb_setup.py:_flush():68] Current SDK version is 0.19.10
+2025-05-06 01:36:16,572 INFO    MainThread:11091 [wandb_setup.py:_flush():68] Configure stats pid to 11091
+2025-05-06 01:36:16,572 INFO    MainThread:11091 [wandb_setup.py:_flush():68] Loading settings from /root/.config/wandb/settings
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_setup.py:_flush():68] Loading settings from /root/sam_seg/wandb/settings
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /root/sam_seg/wandb/run-20250506_013616-8v8qg5q4/logs/debug.log
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /root/sam_seg/wandb/run-20250506_013616-8v8qg5q4/logs/debug-internal.log
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:init():852] calling init triggers
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'train': {'experiment_name': 'semantic_sam', 'model': {'sam_name': 'sem_sam', 'params': {'fix_img_en': True, 'fix_prompt_en': True, 'fix_mask_de': False, 'ckpt_path': 'sam_ckpt/sam_vit_b_01ec64.pth', 'class_num': 21, 'model_type': 'vit_b'}}, 'dataset': {'name': 'torch_voc_sem', 'params': {'root': './DataSet', 'year': '2012', 'image_set': 'train'}, 'transforms': {'resize': {'params': {'size': [1024, 1024]}}, 'to_tensor': {'params': None}}, 'target_transforms': {'resize': {'params': {'size': [1024, 1024]}}}}, 'losses': {'ce': {'weight': 0.5, 'params': {'ignore_index': 255}, 'label_one_hot': False}}, 'opt_params': {'lr_default': 0.001, 'wd_default': 0.0001, 'momentum': 0.9, 'lr_list': [0.01], 'group_keys': [['mask_adapter.decoder_head.output_hypernetworks_mlps']], 'wd_list': [0.0]}, 'opt_name': 'sgd', 'scheduler_name': 'cosine', 'max_epoch': 50, 'runner_name': 'sem_runner', 'bs': 16, 'num_workers': 4, 'drop_last': True, 'use_tensorboard': True, 'tensorboard_folder': './experiment/tensorboard', 'log_folder': './experiment/log', 'model_folder': './experiment/model'}, 'val': {'dataset': {'name': 'torch_voc_sem', 'params': {'root': './DataSet', 'year': '2012', 'image_set': 'val'}, 'transforms': {'resize': {'params': {'size': [1024, 1024]}}, 'to_tensor': {'params': None}}, 'target_transforms': {'resize': {'params': {'size': [1024, 1024]}}}}, 'bs': 16, 'num_workers': 4, 'drop_last': True}, 'test': {'need_test': False}, '_wandb': {}}
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:init():893] starting backend
+2025-05-06 01:36:16,573 INFO    MainThread:11091 [wandb_init.py:init():897] sending inform_init request
+2025-05-06 01:36:16,581 INFO    MainThread:11091 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-06 01:36:16,582 INFO    MainThread:11091 [wandb_init.py:init():907] backend started and connected
+2025-05-06 01:36:16,586 INFO    MainThread:11091 [wandb_init.py:init():1002] updated telemetry
+2025-05-06 01:36:16,594 INFO    MainThread:11091 [wandb_init.py:init():1026] communicating run to backend with 90.0 second timeout
+2025-05-06 01:36:17,810 INFO    MainThread:11091 [wandb_init.py:init():1101] starting run threads in backend
+2025-05-06 01:36:17,948 INFO    MainThread:11091 [wandb_run.py:_console_start():2566] atexit reg
+2025-05-06 01:36:17,948 INFO    MainThread:11091 [wandb_run.py:_redirect():2414] redirect: wrap_raw
+2025-05-06 01:36:17,949 INFO    MainThread:11091 [wandb_run.py:_redirect():2483] Wrapping output streams.
+2025-05-06 01:36:17,949 INFO    MainThread:11091 [wandb_run.py:_redirect():2506] Redirects installed.
+2025-05-06 01:36:17,951 INFO    MainThread:11091 [wandb_init.py:init():1147] run started, returning control to user process
+2025-05-06 01:36:24,304 INFO    MsgRouterThr:11091 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

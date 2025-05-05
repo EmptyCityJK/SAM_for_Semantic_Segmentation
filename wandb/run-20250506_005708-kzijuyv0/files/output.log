@@ -1,0 +1,11 @@
+Using 2 GPUs: 0,1
+Traceback (most recent call last):
+  File "/root/sam_seg/train.py", line 49, in <module>
+    runner.train(train_cfg)
+  File "/root/sam_seg/extend_sam/runner.py", line 77, in train
+    train_metric.add(pred_mask, gt_mask)
+  File "/root/sam_seg/extend_sam/utils.py", line 128, in add
+    self.P[i] += np.sum((pred_mask == i) * obj_mask)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<__array_function__ internals>", line 177, in sum
+KeyboardInterrupt

@@ -52,13 +52,13 @@ train:
 
   # Runner
   # max_iter: 100000
-  max_epoch: 100
-  log_iter: 20
-  eval_iter: 200
+  max_epoch: 50
+  # log_iter: 20
+  # eval_iter: 200
   runner_name: 'sem_runner'
   # Dataloader
-  bs: 4 # 4
-  num_workers: 2
+  bs: 8 # 8
+  num_workers: 4
   drop_last: True
   # Logger
   use_tensorboard: True
@@ -85,8 +85,8 @@ val:
         params:
           size: [1024, 1024]
 
-  bs: 4
-  num_workers: 2
+  bs: 8
+  num_workers: 4
   drop_last: True
 
 
