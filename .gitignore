@@ -2,6 +2,7 @@
 sam_ckpt/
 *.pth
 *.pt
+*.png
 
 DataSet/
 
