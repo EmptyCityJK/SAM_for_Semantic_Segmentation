@@ -53,7 +53,7 @@ class SemRunner(BaseRunner):
                 self.optimizer.zero_grad()
                 total_loss.backward()
                 self.optimizer.step()
-
+                # 对每个像素在类别维度 class_num 上取最大值，得到概率最高的类别索引
                 predictions = torch.argmax(masks_pred, dim=1)
                 for i in range(images.size(0)):
                     pred_mask = get_numpy_from_tensor(predictions[i])
