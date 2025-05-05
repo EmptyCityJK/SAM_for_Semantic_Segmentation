@@ -27,6 +27,7 @@ class BaseRunner():
         self.original_size = self.model.img_adapter.sam_img_encoder.img_size
         if self.the_number_of_gpu > 1:
             self.model = nn.DataParallel(self.model)
+        print(f"Using {self.the_number_of_gpu} GPUs: {use_gpu}")
 
 
 class SemRunner(BaseRunner):
