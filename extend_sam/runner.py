@@ -6,6 +6,7 @@ import cv2
 import torch.nn.functional as F
 import os
 import torch.nn as nn
+import wandb
 
 
 class BaseRunner():
@@ -37,55 +38,79 @@ class SemRunner(BaseRunner):
         self.exist_status = ['train', 'eval', 'test']
 
     def train(self, cfg):
-        # initial identify
-        train_meter = Average_Meter(list(self.losses.keys()) + ['total_loss'])
-        train_iterator = Iterator(self.train_loader)
+        writer = None
+        if cfg.use_tensorboard:
+            from torch.utils.tensorboard import SummaryWriter
+            writer = SummaryWriter(f"{cfg.tensorboard_folder}/{cfg.experiment_name}/tensorboard/")
+        
         best_valid_mIoU = -1
-        model_path = "{cfg.model_folder}/{cfg.experiment_name}/model.pth".format(cfg=cfg)
-        log_path = "{cfg.log_folder}/{cfg.experiment_name}/log_file.txt".format(cfg=cfg)
+        model_path = f"{cfg.model_folder}/{cfg.experiment_name}/model.pth"
+        log_path = f"{cfg.log_folder}/{cfg.experiment_name}/log_file.txt"
         check_folder(model_path)
         check_folder(log_path)
-        writer = None
-        if cfg.use_tensorboard is True:
-            tensorboard_dir = "{cfg.tensorboard_folder}/{cfg.experiment_name}/tensorboard/".format(cfg=cfg)
-            from torch.utils.tensorboard import SummaryWriter
-            writer = SummaryWriter(tensorboard_dir)
-        # train
-        for iteration in range(cfg.max_iter):
-            images, labels = train_iterator.get()
-            images, labels = images.cuda(), labels.cuda().long()
-            masks_pred, iou_pred = self.model(images)
-            masks_pred = F.interpolate(masks_pred, self.original_size, mode="bilinear", align_corners=False)
 
-            total_loss = torch.zeros(1).cuda()
-            loss_dict = {}
-            self._compute_loss(total_loss, loss_dict, masks_pred, labels, cfg)
-            self.optimizer.zero_grad()
-            total_loss.backward()
-            self.optimizer.step()
+        for epoch in range(cfg.max_epoch):
+            # ------------------- 训练 -------------------
+            self.model.train()
+            train_meter = Average_Meter(list(self.losses.keys()) + ['total_loss'])
+            train_metric = mIoUOnline(self.train_loader.dataset.class_names)
+
+            for images, labels in self.train_loader:
+                images, labels = images.cuda(), labels.cuda().long()
+                masks_pred, _ = self.model(images)
+                masks_pred = F.interpolate(masks_pred, self.original_size, mode="bilinear", align_corners=False)
+
+                total_loss = torch.zeros(1).cuda()
+                loss_dict = {}
+                self._compute_loss(total_loss, loss_dict, masks_pred, labels, cfg)
+
+                self.optimizer.zero_grad()
+                total_loss.backward()
+                self.optimizer.step()
+
+                predictions = torch.argmax(masks_pred, dim=1)
+                for i in range(images.size(0)):
+                    pred_mask = get_numpy_from_tensor(predictions[i])
+                    gt_mask = get_numpy_from_tensor(labels[i])
+                    gt_mask = cv2.resize(gt_mask, pred_mask.shape[::-1], interpolation=cv2.INTER_NEAREST)
+                    train_metric.add(pred_mask, gt_mask)
+
+                loss_dict['total_loss'] = total_loss.item()
+                train_meter.add(loss_dict)
+
             self.scheduler.step()
-            loss_dict['total_loss'] = total_loss.item()
-            train_meter.add(loss_dict)
 
-            # log
-            if (iteration + 1) % cfg.log_iter == 0:
-                write_log(iteration=iteration, log_path=log_path, log_data=train_meter.get(clear=True),
-                          status=self.exist_status[0],
-                          writer=writer, timer=self.train_timer)
-            # eval
-            if (iteration + 1) % cfg.eval_iter == 0:
-                mIoU, _ = self._eval()
-                if best_valid_mIoU == -1 or best_valid_mIoU < mIoU:
-                    best_valid_mIoU = mIoU
-                    save_model(self.model, model_path, parallel=self.the_number_of_gpu > 1)
-                    print_and_save_log("saved model in {model_path}".format(model_path=model_path), path=log_path)
-                log_data = {'mIoU': mIoU, 'best_valid_mIoU': best_valid_mIoU}
-                write_log(iteration=iteration, log_path=log_path, log_data=log_data, status=self.exist_status[1],
-                          writer=writer, timer=self.eval_timer)
-        # final process
+            train_loss = train_meter.get(clear=True)['total_loss']
+            train_miou, train_miou_fg = train_metric.get(clear=True)
+
+            # ------------------- val mIoU 和 loss -------------------
+            (val_miou, val_miou_fg), val_loss = self._eval_with_loss(cfg)
+
+            # ------------------- Save best model -------------------
+            if val_miou > best_valid_mIoU:
+                best_valid_mIoU = val_miou
+                save_model(self.model, model_path, parallel=self.the_number_of_gpu > 1)
+                print_and_save_log(f"Epoch {epoch+1}: saved best model to {model_path}", path=log_path)
+
+            # ------------------- Logging -------------------
+            log_data = {
+                "epoch": epoch + 1,
+                "train_loss": train_loss,
+                "train_mIoU": train_miou,
+                "train_mIoU_fg": train_miou_fg,
+                "val_loss": val_loss,
+                "val_mIoU": val_miou,
+                "val_mIoU_fg": val_miou_fg,
+                "val_best_mIoU": best_valid_mIoU
+            }
+            write_log(epoch + 1, log_path, log_data, status="epoch", writer=writer, timer=self.train_timer)
+            # wandb 日志记录
+            wandb.log(log_data)
+
         save_model(self.model, model_path, is_final=True, parallel=self.the_number_of_gpu > 1)
-        if writer is not None:
+        if writer:
             writer.close()
+
 
     def test(self):
         pass
@@ -110,6 +135,34 @@ class SemRunner(BaseRunner):
                     eval_metric.add(pred_mask, gt_mask)
         self.model.train()
         return eval_metric.get(clear=True)
+
+    def _eval_with_loss(self, cfg):
+        # 用于获取验证 loss 和 mIoU
+        self.model.eval()
+        class_names = self.val_loader.dataset.class_names
+        val_meter = Average_Meter(list(self.losses.keys()) + ['total_loss'])
+        eval_metric = mIoUOnline(class_names)
+
+        with torch.no_grad():
+            for images, labels in self.val_loader:
+                images, labels = images.cuda(), labels.cuda().long()
+                masks_pred, _ = self.model(images)
+                masks_pred = F.interpolate(masks_pred, self.original_size, mode="bilinear", align_corners=False)
+
+                total_loss = torch.zeros(1).cuda()
+                loss_dict = {}
+                self._compute_loss(total_loss, loss_dict, masks_pred, labels, cfg)
+                val_meter.add({**loss_dict, 'total_loss': total_loss.item()})
+
+                predictions = torch.argmax(masks_pred, dim=1)
+                for i in range(images.size(0)):
+                    pred_mask = get_numpy_from_tensor(predictions[i])
+                    gt_mask = get_numpy_from_tensor(labels[i])
+                    gt_mask = cv2.resize(gt_mask, pred_mask.shape[::-1], interpolation=cv2.INTER_NEAREST)
+                    eval_metric.add(pred_mask, gt_mask)
+
+        self.model.train()
+        return eval_metric.get(clear=True), val_meter.get(clear=True)['total_loss']
 
     def _compute_loss(self, total_loss, loss_dict, mask_pred, labels, cfg):
         """

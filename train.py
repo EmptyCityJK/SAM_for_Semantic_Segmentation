@@ -1,5 +1,5 @@
-
 import argparse
+import wandb
 from omegaconf import OmegaConf
 from torch.utils.data import DataLoader
 from datasets import get_dataset
@@ -30,6 +30,12 @@ if __name__ == '__main__':
     val_dataset = get_dataset(val_cfg.dataset)
     val_loader = DataLoader(val_dataset, batch_size=val_cfg.bs, shuffle=False, num_workers=val_cfg.num_workers,
                             drop_last=val_cfg.drop_last)
+    # 初始化 wandb
+    wandb.init(
+        project="sam-semantic-segmentation",   # 你的项目名，可自定义
+        name=f"{task_name}_run",           # 每次运行的名称
+        config=OmegaConf.to_container(config, resolve=True)  # 记录配置参数
+    )
     losses = get_losses(losses=train_cfg.losses)
     # according the model name to get the adapted model
     model = get_model(model_name=train_cfg.model.sam_name, **train_cfg.model.params)

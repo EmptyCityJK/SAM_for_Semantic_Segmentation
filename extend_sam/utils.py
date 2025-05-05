@@ -186,20 +186,20 @@ def save_model(model, model_path, parallel=False, is_final=False):
         torch.save(model.state_dict(), model_path)
 
 
-def write_log(iteration, log_path, log_data, status, writer, timer):
-    log_data['iteration'] = iteration
+def write_log(epoch, log_path, log_data, status, writer, timer):
+    log_data['epoch'] = epoch
     log_data['time'] = timer.end(clear=True)
-    message = "iteration : {val}, ".format(val=log_data['iteration'])
+    message = "Epoch : {val}, ".format(val=log_data['epoch'])
     for key, value in log_data.items():
-        if key == 'iteration':
+        if key == 'epoch':
             continue
-        message += "{key} : {val}, ".format(key=key, val=value)
+        message += "{key} : {val:.4f}, ".format(key=key, val=value)
     message = message[:-2]  # + '\n'
     print_and_save_log(message, log_path)
-    # visualize
+    # 记录到 TensorBoard 或 wandb
     if writer is not None:
         for key, value in log_data.items():
-            writer.add_scalar("{status}/{key}".format(status=status, key=key), value, iteration)
+            writer.add_scalar("{status}/{key}".format(status=status, key=key), value, epoch)
 
 
 def check_folder(file_path, is_folder=False):

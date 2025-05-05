@@ -51,12 +51,13 @@ train:
   scheduler_name: 'cosine'
 
   # Runner
-  max_iter: 100000
+  # max_iter: 100000
+  max_epoch: 100
   log_iter: 20
   eval_iter: 200
   runner_name: 'sem_runner'
   # Dataloader
-  bs: 4 # 8
+  bs: 4 # 4
   num_workers: 2
   drop_last: True
   # Logger
@@ -84,7 +85,7 @@ val:
         params:
           size: [1024, 1024]
 
-  bs: 8
+  bs: 4
   num_workers: 2
   drop_last: True
 
